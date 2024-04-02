@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+base:
+  age: 61
+  dependents: 0
+  house_ownership_status: null
+  married: false
+  base_risk: 0
+  vehicle_year: null
+
+one:
+  age: 1
+  dependents: 1
+  house_ownership_status: 1
+  married: false
+  base_risk: 1
+  vehicle_year: 1
+
+two:
+  age: 1
+  dependents: 1
+  house_ownership_status: 1
+  married: false
+  base_risk: 1
+  vehicle_year: 1
