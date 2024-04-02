@@ -1,5 +1,5 @@
 class InsuredsController < ApplicationController
-  before_action :set_insured, only: %i[ show update destroy ]
+  before_action :set_insured, only: %i[show update destroy]
 
   # GET /insureds
   def index
@@ -39,13 +39,14 @@ class InsuredsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_insured
-      @insured = Insured.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def insured_params
-      params.require(:insured).permit(:age, :dependents, :house_ownership_status, :married, :base_risk, :vehicle_year)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_insured
+    @insured = Insured.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def insured_params
+    params.require(:insured).permit(:age, :dependents, :house_ownership_status, :married, :base_risk, :vehicle_year)
+  end
 end

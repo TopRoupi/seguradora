@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: insureds
+#
+#  id                     :uuid             not null, primary key
+#  age                    :integer          not null
+#  base_risk              :integer          not null
+#  dependents             :integer          not null
+#  house_ownership_status :integer
+#  married                :boolean          not null
+#  vehicle_year           :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
 require "test_helper"
 
 class InsuredTest < ActiveSupport::TestCase
