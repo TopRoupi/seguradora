@@ -47,3 +47,7 @@ group :development do
   gem "standardrb"
   gem "rubocop", "~> 1.56.4"
 end
+
+group :test do
+  gem "simplecov", require: false
+end
