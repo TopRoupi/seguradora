@@ -18,6 +18,14 @@ class InsuredsControllerTest < ActionDispatch::IntegrationTest
     assert_response :created
   end
 
+  test "should not create insured if params are invalid" do
+    assert_difference("Insured.count", 0) do
+      post insureds_url, params: {insured: {age: @insured.age, base_risk: -2, dependents: @insured.dependents, married: @insured.married}}, as: :json
+    end
+
+    assert_response :unprocessable_entity
+  end
+
   test "should show insured" do
     get insured_url(@insured), as: :json
     assert_response :success
@@ -26,6 +34,14 @@ class InsuredsControllerTest < ActionDispatch::IntegrationTest
   test "should update insured" do
     patch insured_url(@insured), params: {insured: {age: @insured.age, base_risk: @insured.base_risk, dependents: @insured.dependents, house_ownership_status: @insured.house_ownership_status, married: @insured.married, vehicle_year: @insured.vehicle_year}}, as: :json
     assert_response :success
+  end
+
+  test "should not update insured if params are invalid" do
+    assert_difference("Insured.count", 0) do
+      patch insured_url(@insured), params: {insured: {age: @insured.age, base_risk: -2, dependents: @insured.dependents, married: @insured.married}}, as: :json
+    end
+
+    assert_response :unprocessable_entity
   end
 
   test "should destroy insured" do
