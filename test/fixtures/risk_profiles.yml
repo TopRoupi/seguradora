@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: risk_profiles
+#
+#  id         :uuid             not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  insured_id :uuid             not null
+#
+# Indexes
+#
+#  index_risk_profiles_on_insured_id  (insured_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (insured_id => insureds.id)
+#
+
+one:
+  insured: one
+
+two:
+  insured: two

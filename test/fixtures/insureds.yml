@@ -7,6 +7,7 @@
 #  base_risk              :integer          not null
 #  dependents             :integer          not null
 #  house_ownership_status :integer
+#  income                 :integer          not null
 #  married                :boolean          not null
 #  vehicle_year           :integer
 #  created_at             :datetime         not null
@@ -16,6 +17,7 @@
 base:
   age: 61
   dependents: 0
+  income: 0
   house_ownership_status: null
   married: false
   base_risk: 0
@@ -24,6 +26,7 @@ base:
 one:
   age: 1
   dependents: 1
+  income: 0
   house_ownership_status: 1
   married: false
   base_risk: 1
@@ -32,6 +35,7 @@ one:
 two:
   age: 1
   dependents: 1
+  income: 0
   house_ownership_status: 1
   married: false
   base_risk: 1

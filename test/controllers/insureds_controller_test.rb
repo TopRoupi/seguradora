@@ -12,7 +12,7 @@ class InsuredsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create insured" do
     assert_difference("Insured.count") do
-      post insureds_url, params: {insured: {age: @insured.age, base_risk: @insured.base_risk, dependents: @insured.dependents, house_ownership_status: @insured.house_ownership_status, married: @insured.married, vehicle_year: @insured.vehicle_year}}, as: :json
+      post insureds_url, params: {insured: {age: @insured.age, income: @insured.income, base_risk: @insured.base_risk, dependents: @insured.dependents, house_ownership_status: @insured.house_ownership_status, married: @insured.married, vehicle_year: @insured.vehicle_year}}, as: :json
     end
 
     assert_response :created

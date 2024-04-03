@@ -47,6 +47,6 @@ class InsuredsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def insured_params
-    params.require(:insured).permit(:age, :dependents, :house_ownership_status, :married, :base_risk, :vehicle_year)
+    params.require(:insured).permit(:age, :income, :dependents, :house_ownership_status, :married, :base_risk, :vehicle_year)
   end
 end

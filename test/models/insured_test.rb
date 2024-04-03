@@ -7,6 +7,7 @@
 #  base_risk              :integer          not null
 #  dependents             :integer          not null
 #  house_ownership_status :integer
+#  income                 :integer          not null
 #  married                :boolean          not null
 #  vehicle_year           :integer
 #  created_at             :datetime         not null
@@ -29,6 +30,18 @@ class InsuredTest < ActiveSupport::TestCase
     @insured.age = 20
     @insured.valid?
     assert_empty @insured.errors[:age]
+  end
+
+  test "validate income" do
+    @insured.income = nil
+    @insured.valid?
+    refute_empty @insured.errors[:income]
+    @insured.income = -1
+    @insured.valid?
+    refute_empty @insured.errors[:income]
+    @insured.income = 0
+    @insured.valid?
+    assert_empty @insured.errors[:income]
   end
 
   test "validate dependents" do
@@ -87,5 +100,11 @@ class InsuredTest < ActiveSupport::TestCase
     @insured.vehicle_year = -1
     @insured.valid?
     refute_empty @insured.errors[:vehicle_year]
+  end
+
+  test "#generate_risk_profile should create a risk profile" do
+    assert_difference("@insured.risk_profiles.count", 1) do
+      @insured.generate_risk_profile
+    end
   end
 end
