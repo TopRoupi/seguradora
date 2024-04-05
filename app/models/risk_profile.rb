@@ -25,16 +25,20 @@ class RiskProfile < ApplicationRecord
   private
 
   def create_eligible_lines
-    case insured
-    in { vehicle_year: Integer => _ }
-      InsuranceLine.create(risk_profile: self, line: "vehicle", risk_level: 0)
-    # in { house_ownership_status: _ }
-    #   puts "house"
-    # in { income: 1.. => _ }
-    #   puts "income"
-    # in { income: 1.. => _ }
-    #   puts "income"
-    else
+    @lines = []
+
+    @lines << "vehicle" if insured in { vehicle_year: Integer}
+    @lines << "disability" if insured in { income: 1.. }
+    @lines << "home" if insured in { house_ownership_status: String }
+    @lines << "life" if insured in { age: 0..60 }
+
+    if insured in { age: 61.. }
+      @lines.delete "life"
+      @lines.delete "disability"
+    end
+
+    @lines.each do
+      InsuranceLine.create(risk_profile: self, line: _1, risk_level: insured.base_risk)
     end
   end
 

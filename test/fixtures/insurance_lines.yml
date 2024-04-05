@@ -18,12 +18,12 @@
 #  fk_rails_...  (risk_profile_id => risk_profiles.id)
 #
 
-one:
+vehicle:
   risk_profile: one
   risk_level: 1
-  line: MyString
+  line: vehicle
 
-two:
+life:
   risk_profile: two
   risk_level: 1
-  line: MyString
+  line: life

@@ -20,7 +20,28 @@
 require "test_helper"
 
 class InsuranceLineTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @line = insurance_lines(:vehicle)
+  end
+  # validations
+  test "validate risk_level" do
+    @line.risk_level = nil
+    @line.valid?
+    refute_empty @line.errors[:risk_level]
+    @line.risk_level = -1
+    @line.valid?
+    refute_empty @line.errors[:risk_level]
+    @line.risk_level = 0
+    @line.valid?
+    assert_empty @line.errors[:risk_level]
+  end
+
+  test "validate line" do
+    @line.line = nil
+    @line.valid?
+    refute_empty @line.errors[:line]
+    @line.line = "life"
+    @line.valid?
+    assert_empty @line.errors[:line]
+  end
 end

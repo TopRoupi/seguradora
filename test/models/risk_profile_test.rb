@@ -27,10 +27,55 @@ class RiskProfileTest < ActiveSupport::TestCase
     assert_equal profile.insurance_lines.size, 0
   end
 
-  test "should have no vehicle insurance if eligible" do
+  test "should have vehicle insurance if vehicle_year is set" do
     @insured.vehicle_year = 2001
     profile = @insured.generate_risk_profile
     assert_equal profile.insurance_lines.where(line: "vehicle").count, 1
     assert_equal profile.insurance_lines.count, 1
+  end
+
+  test "should have disability insurance if income is more than 0" do
+    @insured.income = 110_000
+    @insured.age = 40
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.where(line: "disability").count, 1
+  end
+
+  test "should have home insurance if house_ownership_status is set" do
+    @insured.house_ownership_status = :rented
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.where(line: "home").count, 1
+    assert_equal profile.insurance_lines.count, 1
+  end
+
+  test "should have life insurance if age is less than 61" do
+    @insured.age = 60
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.where(line: "life").count, 1
+    assert_equal profile.insurance_lines.count, 1
+  end
+
+  test "should not have life insurance if age is more than 60" do
+    @insured.age = 61
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.where(line: "life").count, 0
+    assert_equal profile.insurance_lines.count, 0
+  end
+
+  test "should not have disability insurance if age is more than 60" do
+    @insured.age = 61
+    # yes we should deny this person insurence
+    @insured.income = 99_999_999
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.where(line: "disability").count, 0
+  end
+
+  test "should be able to have multiple insurances" do
+    @insured.age = 40
+    @insured.income = 99_999_999
+    @insured.vehicle_year = 2000
+    @insured.house_ownership_status = :rented
+    profile = @insured.generate_risk_profile
+    assert_equal profile.insurance_lines.count, 4
   end
 end

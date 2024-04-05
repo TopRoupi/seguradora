@@ -19,4 +19,8 @@
 #
 class InsuranceLine < ApplicationRecord
   belongs_to :risk_profile
+
+  validates_presence_of :risk_level, :line
+
+  validates :risk_level, numericality: {greater_than: -1}
 end
