@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+implementation for a job application challenge:  https://github.com/segdev-tecnologia/vagas/tree/main/backend/desafio2
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
+* dependencies
+```
+ruby 3.2.2
+postgres
+```
 
 * Configuration
+make sure the postgress username and password is both
+set to "postgres" or make the necessary changes to database.yml
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

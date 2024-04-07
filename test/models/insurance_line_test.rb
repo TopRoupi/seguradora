@@ -30,7 +30,7 @@ class InsuranceLineTest < ActiveSupport::TestCase
     refute_empty @line.errors[:risk_level]
     @line.risk_level = -1
     @line.valid?
-    refute_empty @line.errors[:risk_level]
+    assert_empty @line.errors[:risk_level]
     @line.risk_level = 0
     @line.valid?
     assert_empty @line.errors[:risk_level]
@@ -43,5 +43,16 @@ class InsuranceLineTest < ActiveSupport::TestCase
     @line.line = "life"
     @line.valid?
     assert_empty @line.errors[:line]
+  end
+
+  test "#recommended_plan" do
+    @line.risk_level = 0
+    assert_equal @line.recommended_plan, "economy"
+    @line.risk_level = 1
+    assert_equal @line.recommended_plan, "standard"
+    @line.risk_level = 2
+    assert_equal @line.recommended_plan, "standard"
+    @line.risk_level = 3
+    assert_equal @line.recommended_plan, "advanced"
   end
 end

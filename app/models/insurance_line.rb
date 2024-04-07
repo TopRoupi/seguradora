@@ -22,5 +22,14 @@ class InsuranceLine < ApplicationRecord
 
   validates_presence_of :risk_level, :line
 
-  validates :risk_level, numericality: {greater_than: -1}
+  def recommended_plan
+    case risk_level
+    in (..0)
+      "economy"
+    in (1..2)
+      "standard"
+    in (3..)
+      "advanced"
+    end
+  end
 end
