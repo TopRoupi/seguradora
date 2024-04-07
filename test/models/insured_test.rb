@@ -168,7 +168,7 @@ class InsuredTest < ActiveSupport::TestCase
     end
   end
 
-  test "#calculate_risk should increase 1 risk levels of home and disability if house status is rented" do
+  test "#calculate_risk should increase 1 risk level of home and disability if house status is rented" do
     insured = insureds(:base)
     insured.age = 42
     insured.income = 100_000
@@ -178,6 +178,52 @@ class InsuredTest < ActiveSupport::TestCase
 
     assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk + 1
     assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk
+  end
+
+  test "#calculate_risk should increase 1 risk level to disability and life lines if the insured has dependents" do
+    insured = insureds(:base)
+    insured.age = 50
+    insured.income = 100_000
+    insured.house_ownership_status = :owned
+    insured.dependents = 2
+
+    profile_risk = insured.generate_risk_profile
+
+    assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk
+  end
+
+  test "#calculate_risk should increase 1 risk level to disability and life lines if the insured is married" do
+    insured = insureds(:base)
+    insured.age = 50
+    insured.income = 100_000
+    insured.house_ownership_status = :owned
+    insured.married = true
+
+    profile_risk = insured.generate_risk_profile
+
+    assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk
+  end
+
+  test "#calculate_risk should increase 1 risk level to vehicle if vehicle year is less than current year - 5" do
+    insured = insureds(:base)
+    insured.age = 50
+    insured.vehicle_year = Time.now.year - 5
+
+    profile_risk = insured.generate_risk_profile
+
+    assert_equal profile_risk.insurance_lines.find_by(line: "vehicle").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk
+
+    insured.vehicle_year = Time.now.year - 6
+
+    profile_risk = insured.generate_risk_profile
+
+    assert_equal profile_risk.insurance_lines.find_by(line: "vehicle").risk_level, insured.base_risk
     assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk
   end
 end
