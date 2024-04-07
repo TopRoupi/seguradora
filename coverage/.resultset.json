@@ -1,7 +1,7 @@
 {
   "Minitest": {
     "coverage": {
-      "/var/home/me/seguradora-main/config/environment.rb": {
+      "/var/home/me/seguradora-desafio/config/environment.rb": {
         "lines": [
           null,
           1,
@@ -10,7 +10,7 @@
           1
         ]
       },
-      "/var/home/me/seguradora-main/config/environments/test.rb": {
+      "/var/home/me/seguradora-desafio/config/environments/test.rb": {
         "lines": [
           1,
           null,
@@ -78,7 +78,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/config/initializers/cors.rb": {
+      "/var/home/me/seguradora-desafio/config/initializers/cors.rb": {
         "lines": [
           null,
           null,
@@ -98,7 +98,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/config/initializers/filter_parameter_logging.rb": {
+      "/var/home/me/seguradora-desafio/config/initializers/filter_parameter_logging.rb": {
         "lines": [
           null,
           null,
@@ -110,7 +110,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/config/initializers/inflections.rb": {
+      "/var/home/me/seguradora-desafio/config/initializers/inflections.rb": {
         "lines": [
           null,
           null,
@@ -130,7 +130,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/config/routes.rb": {
+      "/var/home/me/seguradora-desafio/config/routes.rb": {
         "lines": [
           1,
           1,
@@ -145,7 +145,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/test/controllers/insureds_controller_test.rb": {
+      "/var/home/me/seguradora-desafio/test/controllers/insureds_controller_test.rb": {
         "lines": [
           1,
           null,
@@ -203,7 +203,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/test/models/insurance_line_test.rb": {
+      "/var/home/me/seguradora-desafio/test/models/insurance_line_test.rb": {
         "lines": [
           null,
           null,
@@ -254,8 +254,197 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/test/models/insured_test.rb": {
+      "/var/home/me/seguradora-desafio/test/models/insured_test.rb": {
         "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          13,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          1,
+          1,
+          2,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/var/home/me/seguradora-desafio/test/models/risk_profile_test.rb": {
+        "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -281,122 +470,6 @@
           1,
           1,
           1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
-      "/var/home/me/seguradora-main/test/models/risk_profile_test.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          8,
-          null,
-          null,
-          1,
-          1,
-          1,
           null,
           null,
           1,
@@ -453,7 +526,7 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/models/insurance_line.rb": {
+      "/var/home/me/seguradora-desafio/app/models/insurance_line.rb": {
         "lines": [
           null,
           null,
@@ -483,14 +556,14 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/models/application_record.rb": {
+      "/var/home/me/seguradora-desafio/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/models/insured.rb": {
+      "/var/home/me/seguradora-desafio/app/models/insured.rb": {
         "lines": [
           null,
           null,
@@ -519,16 +592,16 @@
           1,
           null,
           1,
-          9,
+          16,
           null,
           null,
           1,
-          45,
+          80,
           null,
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/models/risk_profile.rb": {
+      "/var/home/me/seguradora-desafio/app/models/risk_profile.rb": {
         "lines": [
           null,
           null,
@@ -553,33 +626,55 @@
           null,
           1,
           1,
-          null,
           1,
           null,
           1,
-          9,
           null,
-          9,
-          9,
-          9,
-          9,
           null,
-          9,
+          null,
+          null,
+          1,
+          16,
+          null,
+          16,
+          16,
+          16,
+          16,
+          16,
           6,
           6,
           null,
           null,
-          9,
-          9,
+          null,
+          1,
+          16,
+          20,
+          null,
+          null,
+          null,
           null,
           null,
           null,
           1,
+          16,
+          16,
+          16,
+          16,
+          null,
+          null,
+          1,
+          null,
+          null,
+          11,
+          21,
+          20,
+          20,
+          null,
           null,
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/controllers/insureds_controller.rb": {
+      "/var/home/me/seguradora-desafio/app/controllers/insureds_controller.rb": {
         "lines": [
           1,
           1,
@@ -635,13 +730,13 @@
           null
         ]
       },
-      "/var/home/me/seguradora-main/app/controllers/application_controller.rb": {
+      "/var/home/me/seguradora-desafio/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null
         ]
       }
     },
-    "timestamp": 1712151491
+    "timestamp": 1712455841
   }
 }

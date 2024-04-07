@@ -107,4 +107,77 @@ class InsuredTest < ActiveSupport::TestCase
       @insured.generate_risk_profile
     end
   end
+
+  test "#calculate_risk should decrease 3 risk levels from all insurance lines if insured age is less 30" do
+    insured = insureds(:base)
+    insured.age = 29
+    profile_risk = insured.generate_risk_profile
+    assert profile_risk.insurance_lines.count > 0
+
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk - 3
+    end
+  end
+
+  test "#calculate_risk should decrease 1 risk levels from all insurance lines if insured age is 30 or 40" do
+    insured = insureds(:base)
+    insured.age = 30
+
+    profile_risk = insured.generate_risk_profile
+    assert profile_risk.insurance_lines.count > 0
+
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk - 1
+    end
+
+    insured.age = 40
+    profile_risk = insured.generate_risk_profile
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk - 1
+    end
+  end
+
+  test "#calculate_risk should not decrease risk levels if insured age is 41" do
+    insured = insureds(:base)
+    insured.age = 41
+
+    profile_risk = insured.generate_risk_profile
+    assert profile_risk.insurance_lines.count > 0
+
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk
+    end
+  end
+
+  test "#calculate_risk should decrease 1 risk levels of all insurance lines if insured income is more than 200_000" do
+    insured = insureds(:base)
+    insured.age = 50
+    insured.income = 200_001
+
+    profile_risk = insured.generate_risk_profile
+    assert profile_risk.insurance_lines.count > 0
+
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk - 1
+    end
+
+    insured.income = 200_000
+    profile_risk = insured.generate_risk_profile
+    profile_risk.insurance_lines.each do |i|
+      assert_equal i.risk_level, insured.base_risk
+    end
+  end
+
+  test "#calculate_risk should increase 1 risk levels of home and disability if house status is rented" do
+    insured = insureds(:base)
+    insured.age = 42
+    insured.income = 100_000
+    insured.house_ownership_status = :rented
+
+    profile_risk = insured.generate_risk_profile
+
+    assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk
+  end
 end

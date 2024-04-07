@@ -20,8 +20,17 @@ base:
   income: 0
   house_ownership_status: null
   married: false
-  base_risk: 0
+  base_risk: 3
   vehicle_year: null
+
+full_eligible:
+  age: 30
+  dependents: 1
+  income: 100_000
+  house_ownership_status: owned
+  married: true
+  base_risk: 3
+  vehicle_year: 2000
 
 one:
   age: 1
