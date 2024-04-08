@@ -114,6 +114,7 @@ class InsuredTest < ActiveSupport::TestCase
     profile_risk = insured.generate_risk_profile
     assert profile_risk.insurance_lines.count > 0
 
+    profile_risk.reload
     profile_risk.insurance_lines.each do |i|
       assert_equal i.risk_level, insured.base_risk - 3
     end
@@ -126,12 +127,14 @@ class InsuredTest < ActiveSupport::TestCase
     profile_risk = insured.generate_risk_profile
     assert profile_risk.insurance_lines.count > 0
 
+    profile_risk.reload
     profile_risk.insurance_lines.each do |i|
       assert_equal i.risk_level, insured.base_risk - 1
     end
 
     insured.age = 40
     profile_risk = insured.generate_risk_profile
+    profile_risk.reload
     profile_risk.insurance_lines.each do |i|
       assert_equal i.risk_level, insured.base_risk - 1
     end
@@ -157,6 +160,7 @@ class InsuredTest < ActiveSupport::TestCase
     profile_risk = insured.generate_risk_profile
     assert profile_risk.insurance_lines.count > 0
 
+    profile_risk.reload
     profile_risk.insurance_lines.each do |i|
       assert_equal i.risk_level, insured.base_risk - 1
     end
@@ -195,7 +199,7 @@ class InsuredTest < ActiveSupport::TestCase
     assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk
   end
 
-  test "#calculate_risk should increase 1 risk level to disability and life lines if the insured is married" do
+  test "#calculate_risk should increase 1 risk level to life and decrease 1 from disability if the insured is married" do
     insured = insureds(:base)
     insured.age = 50
     insured.income = 100_000
@@ -204,7 +208,7 @@ class InsuredTest < ActiveSupport::TestCase
 
     profile_risk = insured.generate_risk_profile
 
-    assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk + 1
+    assert_equal profile_risk.insurance_lines.find_by(line: "disability").risk_level, insured.base_risk - 1
     assert_equal profile_risk.insurance_lines.find_by(line: "life").risk_level, insured.base_risk + 1
     assert_equal profile_risk.insurance_lines.find_by(line: "home").risk_level, insured.base_risk
   end

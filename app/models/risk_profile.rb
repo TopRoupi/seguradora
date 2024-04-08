@@ -29,12 +29,9 @@ class RiskProfile < ApplicationRecord
     lines = insurance_lines.to_a
 
     PROVIDED_PLANS.map do |line|
-      suggestion = {}
-
-      recommended_plan = lines.find { |l| l.line == line }&.recommended_plan || "ineligible"
-
-      suggestion[line] = recommended_plan
-      suggestion
+      recommended_plan = lines.find { _1.line == line }&.recommended_plan
+      recommended_plan ||= "ineligible"
+      {line => recommended_plan}
     end
   end
 
@@ -55,42 +52,36 @@ class RiskProfile < ApplicationRecord
       @lines.delete "disability"
     end
   end
+
   def create_eligible_lines
     @lines.each do
       InsuranceLine.create(risk_profile: self, line: _1, risk_level: insured.base_risk)
     end
   end
 
-  # this method is not "atomic" if you call it more than one
+  # this method is not "idempotence" if you call it more than one
   # it will add more risk to the insurance lines even tough
   # the risk was already calculated before TODO: fix it
-  ## TODO: the same problem with #set_eligible_lines also applys here
+  #
+  # TODO: the same problem with #set_eligible_lines also applys here
   def calculate_risks
-    increment_risk(insurance_lines, -3) if insured.age < 30
-    increment_risk(insurance_lines, -1) if insured.age >= 30 && insured.age <= 40
-    increment_risk(insurance_lines, -1) if insured.income > 200_000
-    if insured.rented?
-      increment_risk([insurance_lines.find_by(line: "home"), insurance_lines.find_by(line: "disability")], 1)
-    end
-    if insured.dependents > 0
-      increment_risk([insurance_lines.find_by(line: "life"), insurance_lines.find_by(line: "disability")], 1)
-    end
+    increment_risk(PROVIDED_PLANS, -3) if insured.age < 30
+    increment_risk(PROVIDED_PLANS, -1) if insured.age >= 30 && insured.age <= 40
+    increment_risk(PROVIDED_PLANS, -1) if insured.income > 200_000
+    increment_risk(["home", "disability"], 1) if insured.rented?
+    increment_risk(["life", "disability"], 1) if insured.dependents > 0
+
     if insured.married?
-      increment_risk([insurance_lines.find_by(line: "life"), insurance_lines.find_by(line: "disability")], 1)
+      increment_risk(["life"], 1)
+      increment_risk(["disability"], -1)
     end
 
     if insured.vehicle_year && insured.vehicle_year >= (Time.now.year - 5)
-      increment_risk([insurance_lines.find_by(line: "vehicle")], 1)
+      increment_risk(["vehicle"], 1)
     end
   end
 
-  def increment_risk(insurance_lines, by)
-    # TODO: this may generate a bunch of sql queries
-    # refactor later
-    insurance_lines.each do |i|
-      next if i.nil?
-      i.risk_level += by
-      i.save
-    end
+  def increment_risk(lines, by)
+    InsuranceLine.where({line: lines}).update_all(["risk_level = risk_level + ?", by])
   end
 end

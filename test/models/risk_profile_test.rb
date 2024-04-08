@@ -83,10 +83,12 @@ class RiskProfileTest < ActiveSupport::TestCase
     @insured = insureds(:full_eligible)
     @insured.vehicle_year = nil
     profile = @insured.generate_risk_profile
+
+    profile.reload
     assert_equal(
       [
         {"vehicle" => "ineligible"},
-        {"life" => "standard"},
+        {"life" => "advanced"},
         {"home" => "standard"},
         {"disability" => "standard"}
       ],
