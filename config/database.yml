@@ -83,5 +83,4 @@ test:
 production:
   <<: *default
   database: seguradora_desafio_production
-  username: seguradora_desafio
-  password: <%= ENV["SEGURADORA_DESAFIO_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

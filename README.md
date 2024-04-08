@@ -14,6 +14,41 @@ make sure the postgress username and password is both
 set to "postgres" or make the necessary changes to database.yml
 
 * Test
-example requestes can be found in the Insomnia export json in the root folder of this repo and will be testable against a hosted version of this project later.
+example requests can be found in the Insomnia export json in the root folder of this repo.
 
-for now you will be able to run it locally to test
+there is an hosted instance of this application running on https://seguradora-api.cap.greyrepo.xyz/
+
+curl command to test the application:
+```bash
+curl --request POST \
+  --url https://seguradora-api.cap.greyrepo.xyz/risk_profile/plan_suggestion \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"insured": {
+		"age": 53,
+		"dependents": 6,
+		"house": {},
+		"income": 10000,
+		"marital_status": "married",
+		"risk_questions": [1, 1, 1],
+		"vehicle": {}
+	}
+}'
+```
+
+```bash
+curl --request POST \
+  --url https://seguradora-api.cap.greyrepo.xyz/risk_profile/plan_suggestion \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"insured": {
+		"age": 53,
+		"dependents": 6,
+		"house": {"ownership_status": "rented"},
+		"income": 10000,
+		"marital_status": "married",
+		"risk_questions": [1, 1, 1],
+		"vehicle": {"year": 2022}
+	}
+}'
+```
