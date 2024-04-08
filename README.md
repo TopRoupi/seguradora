@@ -1,22 +1,20 @@
-# README
-
 implementation for a job application challenge:  https://github.com/segdev-tecnologia/vagas/tree/main/backend/desafio2
 
 
-* dependencies
+# dependencies
 ```
 ruby 3.2.2
 postgres
 ```
 
-* Configuration
+# Configuration
 make sure the postgress username and password is both
 set to "postgres" or make the necessary changes to database.yml
 
-* Test
+# Test
 example requests can be found in the Insomnia export json in the root folder of this repo.
 
-there is an hosted instance of this application running on https://seguradora-api.cap.greyrepo.xyz/
+there is also a hosted instance of this application running on https://seguradora-api.cap.greyrepo.xyz/
 
 curl command to test the application:
 ```bash
