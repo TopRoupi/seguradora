@@ -728,7 +728,7 @@
           null,
           null,
           1,
-          110,
+          0,
           null,
           null
         ]
@@ -758,7 +758,6 @@
           null,
           1,
           1,
-          1,
           null,
           1,
           null,
@@ -776,23 +775,17 @@
           null,
           null,
           null,
-          null,
           1,
           22,
+          88,
           null,
-          22,
-          22,
-          22,
-          22,
-          22,
-          6,
-          6,
-          null,
-          null,
-          null,
-          1,
-          22,
+          88,
           37,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -824,44 +817,73 @@
           null
         ]
       },
-      "/var/home/me/seguradora-desafio/app/controllers/risk_profile_controller.rb": {
+      "/var/home/me/seguradora-desafio/app/models/lines_factory.rb": {
         "lines": [
           1,
           1,
-          2,
-          null,
-          2,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          2,
-          2,
-          2,
-          2,
-          null,
-          2,
+          88,
+          88,
           null,
           null
         ]
       },
-      "/var/home/me/seguradora-desafio/app/controllers/application_controller.rb": {
+      "/var/home/me/seguradora-desafio/app/models/lines/vehicle.rb": {
         "lines": [
           1,
+          1,
+          null,
+          1,
+          22,
+          null,
+          null,
+          1,
+          22,
+          null,
+          null
+        ]
+      },
+      "/var/home/me/seguradora-desafio/app/models/lines/life.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          22,
+          null,
+          null,
+          1,
+          22,
+          null,
+          null
+        ]
+      },
+      "/var/home/me/seguradora-desafio/app/models/lines/home.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          22,
+          null,
+          null,
+          1,
+          22,
+          null,
+          null
+        ]
+      },
+      "/var/home/me/seguradora-desafio/app/models/lines/disability.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          22,
+          null,
+          null,
+          1,
+          22,
+          null,
           null
         ]
       },
@@ -920,8 +942,49 @@
           null,
           null
         ]
+      },
+      "/var/home/me/seguradora-desafio/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/var/home/me/seguradora-desafio/app/controllers/risk_profile_controller.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          2,
+          2,
+          2,
+          null,
+          2,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1712600195
+    "timestamp": 1712605304
   }
 }

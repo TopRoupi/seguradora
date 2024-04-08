@@ -20,7 +20,6 @@ class RiskProfile < ApplicationRecord
   has_many :insurance_lines, dependent: :destroy
 
   after_commit :set_eligible_lines, on: :create
-  after_commit :create_eligible_lines, on: :create
   after_commit :calculate_risks, on: :create
 
   PROVIDED_PLANS = ["vehicle", "life", "home", "disability"]
@@ -37,25 +36,19 @@ class RiskProfile < ApplicationRecord
 
   private
 
-  # TODO: maybe make a new class for each insurance line then
-  # call a method named like "evaluate_eligibility" to each one
-  # of them
+  # TODO this method creates the insurance lines one by one
+  # and generates a lot of queries
   def set_eligible_lines
-    @lines = []
+    PROVIDED_PLANS.each do |line|
+      line_instance = LinesFactory.new_instance(line, insured)
 
-    @lines << "vehicle" if insured in { vehicle_year: Integer}
-    @lines << "disability" if insured in { income: 1.. }
-    @lines << "home" if insured in { house_ownership_status: String }
-    @lines << "life" if insured in { age: 0..60 }
-    if insured in { age: 61.. }
-      @lines.delete "life"
-      @lines.delete "disability"
-    end
-  end
-
-  def create_eligible_lines
-    @lines.each do
-      InsuranceLine.create(risk_profile: self, line: _1, risk_level: insured.base_risk)
+      if line_instance.eligible?
+        InsuranceLine.create(
+          risk_profile: self,
+          line: line,
+          risk_level: insured.base_risk
+        )
+      end
     end
   end
 
