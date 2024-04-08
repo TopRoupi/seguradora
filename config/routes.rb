@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "risk_profile/plan_suggestion", as: :risk_profile_plan_suggestion
   resources :insureds
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

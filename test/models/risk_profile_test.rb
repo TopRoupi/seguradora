@@ -78,4 +78,19 @@ class RiskProfileTest < ActiveSupport::TestCase
     profile = @insured.generate_risk_profile
     assert_equal profile.insurance_lines.count, 4
   end
+
+  test "#suggested_plans" do
+    @insured = insureds(:full_eligible)
+    @insured.vehicle_year = nil
+    profile = @insured.generate_risk_profile
+    assert_equal(
+      [
+        {"vehicle" => "ineligible"},
+        {"life" => "standard"},
+        {"home" => "standard"},
+        {"disability" => "standard"}
+      ],
+      profile.suggested_plans
+    )
+  end
 end

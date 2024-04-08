@@ -23,6 +23,21 @@ class RiskProfile < ApplicationRecord
   after_commit :create_eligible_lines, on: :create
   after_commit :calculate_risks, on: :create
 
+  PROVIDED_PLANS = ["vehicle", "life", "home", "disability"]
+
+  def suggested_plans
+    lines = insurance_lines.to_a
+
+    PROVIDED_PLANS.map do |line|
+      suggestion = {}
+
+      recommended_plan = lines.find { |l| l.line == line }&.recommended_plan || "ineligible"
+
+      suggestion[line] = recommended_plan
+      suggestion
+    end
+  end
+
   private
 
   # TODO: maybe make a new class for each insurance line then
