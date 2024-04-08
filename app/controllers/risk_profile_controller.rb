@@ -21,17 +21,11 @@ class RiskProfileController < ApplicationController
       {risk_questions: []},
       {vehicle: :year}
     )
-    # TODO: using rightward assignment here might be more
-    # readable
     r[:house_ownership_status] = r[:house]&.[]("ownership_status")
     r[:married] = r[:marital_status] == "married"
     r[:base_risk] = r[:risk_questions].sum
     r[:vehicle_year] = r[:vehicle]&.[]("year")
 
-    r.delete :house
-    r.delete :marital_status
-    r.delete :risk_questions
-    r.delete :vehicle
-    r
+    r.except :house, :marital_status, :risk_questions, :vehicle
   end
 end
